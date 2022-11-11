@@ -1,4 +1,7 @@
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Post } from '../../types/Post';
+import { Pagination } from '../Pagination';
 import { PostsListItem } from '../PostsListItem';
 import './style.scss';
 
@@ -7,23 +10,56 @@ type Props = {
 };
 
 export const PostsList: React.FC<Props> = ({ posts }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(+(searchParams.get('page') || 1));
+
+  const perPage = 10;
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    params.append('page', `${page}`);
+
+    setSearchParams(params.toString());
+  }, [page]);
+
+  const from = ((page - 1) * perPage) + 1;
+  const to = Math.min(posts.length, page * perPage);
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
+
   return (
     <div className="container">
       <div className="notification is-primary has-text-centered is-size-2">
         Posts List
       </div>
 
+      <Pagination
+        posts={posts}
+        handlePageChange={handlePageChange}
+        page={page}
+      />
+
       <div className="
           is-flex
           is-flex-wrap-wrap
           is-justify-content-space-between
+          mb-5
           gap
         "
       >
-        {posts.map(post => (
+        {posts.slice(from - 1, to).map(post => (
           <PostsListItem post={post} />
         ))}
       </div>
+
+      <Pagination
+        posts={posts}
+        handlePageChange={handlePageChange}
+        page={page}
+      />
     </div>
   );
 };
