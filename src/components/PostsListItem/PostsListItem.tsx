@@ -17,7 +17,7 @@ export const PostsListItem: React.FC<Props> = ({ post }) => (
     <div className="card-content">
       <div className="content">
         <p>
-          Id:&nbsp;
+          Post Id:&nbsp;
           {post.id}
         </p>
         <p>

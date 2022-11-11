@@ -18,8 +18,7 @@ export const ModalPost: React.FC<Props> = ({
     <div className="modal-card">
       <header className="modal-card-head">
         <p className="modal-card-title">
-          User:
-          {post.userId}
+          Post info
         </p>
         <button
           type="button"
