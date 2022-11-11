@@ -27,6 +27,7 @@ export const Pagination: React.FC<Props> = ({
       return;
     }
 
+    window.scrollTo(0, 0);
     handlePageChange(nextPage);
   };
 

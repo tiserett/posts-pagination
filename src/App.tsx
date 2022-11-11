@@ -27,7 +27,7 @@ export const App = () => {
     <div className="App">
       <Header />
 
-      <Suggested />
+      <Suggested posts={posts} />
 
       <PostsList posts={posts} />
     </div>

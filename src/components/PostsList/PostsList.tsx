@@ -40,12 +40,6 @@ export const PostsList: React.FC<Props> = ({ posts }) => {
         Posts List
       </div>
 
-      <Pagination
-        posts={posts}
-        handlePageChange={handlePageChange}
-        page={page}
-      />
-
       <div className="
           is-flex
           is-flex-wrap-wrap
@@ -58,6 +52,12 @@ export const PostsList: React.FC<Props> = ({ posts }) => {
           <PostsListItem key={post.id} post={post} />
         ))}
       </div>
+
+      <Pagination
+        posts={posts}
+        handlePageChange={handlePageChange}
+        page={page}
+      />
 
       <button
         type="button"
