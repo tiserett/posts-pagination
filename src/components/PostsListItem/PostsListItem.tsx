@@ -9,7 +9,6 @@ export const PostsListItem: React.FC<Props> = ({ post }) => (
   <div className="
       card
       is-flex
-      is-align-items-center
       is-justify-content-center
       cardItem
     "
@@ -17,7 +16,7 @@ export const PostsListItem: React.FC<Props> = ({ post }) => (
     <div className="card-content">
       <div className="content">
         <p>
-          Post Id:&nbsp;
+          Post id:&nbsp;
           {post.id}
         </p>
         <p>

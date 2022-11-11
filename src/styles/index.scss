@@ -10,3 +10,8 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}

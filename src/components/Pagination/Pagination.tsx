@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { Post } from '../../types/Post';
 import { getPageNumbers } from '../../utils/getPageNumbers';
+import '../../styles/index.scss';
 
 type Props = {
   posts: Post[];
@@ -40,7 +41,7 @@ export const Pagination: React.FC<Props> = ({
         data-page={page - 1}
         className={classNames(
           'button is-success',
-          { 'is-danger': page === 1 },
+          { 'is-danger disabled': page === 1 },
         )}
         onClick={handleClick}
       >
@@ -70,7 +71,7 @@ export const Pagination: React.FC<Props> = ({
         data-page={page + 1}
         className={classNames(
           'button is-success',
-          { 'is-danger': page === total },
+          { 'is-danger disabled': page === total },
         )}
         onClick={handleClick}
       >

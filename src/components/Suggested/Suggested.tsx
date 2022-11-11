@@ -3,6 +3,7 @@ import { FormEvent, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Post } from '../../types/Post';
 import { ModalPost } from '../ModalPost';
+import '../../styles/index.scss';
 
 type Props = {
   posts: Post[];
@@ -44,6 +45,10 @@ export const Suggested: React.FC<Props> = ({ posts }) => {
 
     const foundPost = posts.find(post => post.title === query);
 
+    if (!query || !foundPost) {
+      return;
+    }
+
     setQuery('');
     setSuggestedPost(foundPost);
     setIsOpen(true);
@@ -69,7 +74,15 @@ export const Suggested: React.FC<Props> = ({ posts }) => {
             <p className="help is-danger is-size-5">Enter at least 2 letters</p>
           )}
 
-          <button type="submit" className="button">Submit</button>
+          <button
+            type="submit"
+            className={classNames(
+              'button',
+              { disabled: query.length < 2 },
+            )}
+          >
+            Submit
+          </button>
         </form>
 
         {visible && suggestions.length > 0 ? (
@@ -97,7 +110,7 @@ export const Suggested: React.FC<Props> = ({ posts }) => {
             ))
             )}
           </div>
-        ) : visible && (
+        ) : visible && query.length > 1 && (
           <h2 className="is-size-2 has-text-centered has-text-weight-bold">
             No matching titles were found
           </h2>
