@@ -1,8 +1,12 @@
+import { Post } from '../../types/Post';
+import { PostsListItem } from '../PostsListItem';
 import './style.scss';
 
-export const PostsList = () => {
-  const posts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+type Props = {
+  posts: Post[];
+};
 
+export const PostsList: React.FC<Props> = ({ posts }) => {
   return (
     <div className="container">
       <div className="notification is-primary has-text-centered is-size-2">
@@ -12,25 +16,12 @@ export const PostsList = () => {
       <div className="
           is-flex
           is-flex-wrap-wrap
-          is-justify-content-space-around
+          is-justify-content-space-between
           gap
         "
       >
         {posts.map(post => (
-          <div className="
-              card
-              is-flex
-              is-align-items-center
-              is-justify-content-center
-              cardItem
-            "
-          >
-            <div className="card-content">
-              <div className="content is-size-1">
-                {post}
-              </div>
-            </div>
-          </div>
+          <PostsListItem post={post} />
         ))}
       </div>
     </div>
