@@ -47,7 +47,7 @@ export const Pagination: React.FC<Props> = ({
       </a>
 
       {getPageNumbers(1, total)
-        .splice(total - page <= 3 ? total - 4 : page - 1, 4)
+        .splice(total - page <= 2 ? total - 3 : page - 1, 3)
         .map(currentPage => (
           <a
             href={`#${currentPage}`}

@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Post } from '../../types/Post';
 import { Pagination } from '../Pagination';
 import { PostsListItem } from '../PostsListItem';
-import './style.scss';
+import './styles.scss';
 
 type Props = {
   posts: Post[];
@@ -30,6 +30,10 @@ export const PostsList: React.FC<Props> = ({ posts }) => {
     setPage(newPage);
   };
 
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <div className="container">
       <div className="notification is-primary has-text-centered is-size-2">
@@ -51,15 +55,17 @@ export const PostsList: React.FC<Props> = ({ posts }) => {
         "
       >
         {posts.slice(from - 1, to).map(post => (
-          <PostsListItem post={post} />
+          <PostsListItem key={post.id} post={post} />
         ))}
       </div>
 
-      <Pagination
-        posts={posts}
-        handlePageChange={handlePageChange}
-        page={page}
-      />
+      <button
+        type="button"
+        className="button mb-6 is-link"
+        onClick={scrollToTop}
+      >
+        Back to top
+      </button>
     </div>
   );
 };
