@@ -1,5 +1,5 @@
 import { Post } from '../../types/Post';
-import './styles.scss';
+import './PostsListItem.scss';
 
 type Props = {
   post: Post;

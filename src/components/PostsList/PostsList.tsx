@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Post } from '../../types/Post';
 import { Pagination } from '../Pagination';
 import { PostsListItem } from '../PostsListItem';
-import './styles.scss';
+import './PostsList.scss';
 
 type Props = {
   posts: Post[];
@@ -13,7 +13,7 @@ export const PostsList: React.FC<Props> = ({ posts }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(+(searchParams.get('page') || 1));
 
-  const perPage = 10;
+  const postsPerPage = 10;
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -23,8 +23,8 @@ export const PostsList: React.FC<Props> = ({ posts }) => {
     setSearchParams(params.toString());
   }, [page]);
 
-  const from = ((page - 1) * perPage) + 1;
-  const to = Math.min(posts.length, page * perPage);
+  const from = ((page - 1) * postsPerPage) + 1;
+  const to = Math.min(posts.length, page * postsPerPage);
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);

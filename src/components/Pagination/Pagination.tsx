@@ -14,19 +14,13 @@ export const Pagination: React.FC<Props> = ({
   page,
   handlePageChange,
 }) => {
-  const perPage = 10;
-  const total = Math.ceil(posts.length / perPage);
+  const postsPerPage = 10;
+  const totalPosts = Math.ceil(posts.length / postsPerPage);
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
     const nextPage = +(event.currentTarget.dataset.page || 0);
-
-    if (
-      nextPage === page || nextPage < 1 || nextPage > total
-    ) {
-      return;
-    }
 
     window.scrollTo(0, 0);
     handlePageChange(nextPage);
@@ -48,8 +42,8 @@ export const Pagination: React.FC<Props> = ({
         Prev
       </a>
 
-      {getPageNumbers(1, total)
-        .splice(total - page <= 2 ? total - 3 : page - 1, 3)
+      {getPageNumbers(1, totalPosts)
+        .splice(totalPosts - page <= 2 ? totalPosts - 3 : page - 1, 3)
         .map(currentPage => (
           <a
             href={`#${currentPage}`}
@@ -71,7 +65,7 @@ export const Pagination: React.FC<Props> = ({
         data-page={page + 1}
         className={classNames(
           'button is-success',
-          { 'is-danger disabled': page === total },
+          { 'is-danger disabled': page === totalPosts },
         )}
         onClick={handleClick}
       >
