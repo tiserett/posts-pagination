@@ -13,7 +13,7 @@ Implemented using:
 <hr />
 
 Might not be the best looking page, but I only had a test task, so I tried to do my best😃\
-Took me a 4 hours to finish it
+Took me 4 hours to finish it
 
 You can always contact me via [Linkedin](https://www.linkedin.com/in/maksym-sobko-253a8824a/)
 
